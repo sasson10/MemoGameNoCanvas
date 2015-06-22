@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Memoria</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+        <script src="animacion.js"> </script>       
+        
+        <link rel="stylesheet" type="text/css" href="estilos.css">
+
+    </head>
+    <body>
+
+       
+      <div>
+        <table style="width:100%" class="table" id="tablero">
+<!--Fila 1 -->
+           <tr></tr>
+               
+      </div>
+             
+</table>
+
+ <div>
+          <p>
+            <h2 class="center">Encuentra los pares</h2>
+          </p>
+      </div>
+
+
+<script type="text/javascript">
+$(document).ready(function() {
+
+var htmlTablero = '<td><div id="js-flip-1" class="flip"><div class="card"><div class="face front"><img src="back.png" height="100%" /></div><div class="face back"><img src="dromedario.png" height="100%" /></div></div></div></td>';
+
+
+$('#tablero tr:last').after('<tr>'+htmlTablero+htmlTablero+htmlTablero+htmlTablero+htmlTablero+htmlTablero+'</tr>');
+$('#tablero tr:last').after('<tr>'+htmlTablero+htmlTablero+htmlTablero+htmlTablero+htmlTablero+htmlTablero+'</tr>');
+$('#tablero tr:last').after('<tr>'+htmlTablero+htmlTablero+htmlTablero+htmlTablero+htmlTablero+htmlTablero+'</tr>');
+
+
+    
+
+});
+</script>
+
+
+    </body>
+</html>
