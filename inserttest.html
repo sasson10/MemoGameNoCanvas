@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Memoria</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+        <script src="animacion.js"> </script>       
+        
+        <link rel="stylesheet" type="text/css" href="estilos.css">
+
+        <script>
+            jQuery.fn.center = function() {
+                this.css("position", "absolute");
+                this.css("top", (($(window).outerHeight() - this.outerHeight()) / 2) + $(window).scrollTop() + "px");
+                this.css("left", (($(window).outerWidth() - this.outerWidth()) / 2) + $(window).scrollLeft() + "px");
+                return this;
+            };
+
+            $(document).ready(function() {
+                $("div#main").center(true);
+
+                //add onClick to the button
+                $('form button').on('click', function() {
+                    
+                    for (i = 0; i<10; i++)
+                    $("div#main").append('<div id="'+Math.floor((Math.random() * 10) + 1)+'" class="flip"><div class="card" ><div class="face front"><img src="back.png" height="100%" /></div><div class="face back"><img onclick="clickFunction(this)" class="contenido" src="dromedario.png" height="100%" /></div></div></div>');
+
+                    
+                    //prevent form from submitting (and changing page)
+                    return false;
+                });
+            });
+        </script>
+    </head>
+    <body>
+<div id="main">
+    <div id="search">
+        <form method="get">
+            <label>Define:</label>
+            <input type="text" id=""></input>
+            <button>Go</button>
+        </form>
+    </div>
+</div>​
+       
+     
+
+    </body>
+</html>
