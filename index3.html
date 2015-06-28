@@ -25,6 +25,12 @@
         var time = 0;
         var min = 0; 
         var hours = 0;
+        var previos = [];
+        var pares = [];
+        var aleatorios = [];
+        
+        
+        
 
             $(document).ready(function(){
 
@@ -33,30 +39,30 @@
                 init();
 
 
+
                 $('.flip').toggle(
                         function() {
                           
 
                             $( this ).find ('.card').addClass('flipped');
-                            console.log("antes: " + url);
+                            //console.log("antes: " + url);
                             id = $( this ).attr('id');
 
 
                             if(url1 == null){
                                 url1 = $(this).find ('.card').find ('.back').find ('img').attr("src"); 
                                 id1 = id;
-                                console.log(id);
-                                console.log(url1);
+                                console.log("asigna"+id);
+                                //console.log(url1);
                             }else
                             if(url2 == null){
                                 url2 =  $(this).find ('.card').find ('.back').find ('img').attr("src");
                                 id2 = id;
-                                console.log(id);
-                                console.log(url2);
+                                //console.log(id);
+                                //console.log(url2);
                                 if(url1 == url2){
                                     alert("Correcto!");
-                                     paresCo++;
-                                    console.log(paresCo);
+                                    paresCo++;
                                     url1 = null;
                                     url2 = null;
                                 }else{
@@ -72,11 +78,15 @@
                         function() {
                             $( this ).find ('.card').removeClass('flipped');
                             id = $( this ).attr('id');
+                            console.log("entro retira"+id);
                             if (id == id1){
                                 id1 = null;
+                                id = null;
+                                url1 = null;
                             }
                             if (id == id2){
                                 id2 = null;
+                                id = null;
                             }
                         }
                 );
@@ -102,43 +112,39 @@
                 var img = 0;
                 var contador = 0;
                 var ii = 0;
+                var posicion;
+                var nueve = []; 
+                       
 
                         for(i=0; i<3; i++){
                                 htmltd = "";
                                     for(j=0; j<6; j++){
                                         if(img < 9){
-                                                img++;
                                                 id = random ();
-                                               // previos[cnt] = random ();
+                                                nueve[img] = previos[img];
+                                                img++;
                                             }else{
-                                                id = previos[contador];
-                                                contador++;
+                                                id = random1(nueve);
                                             }
                                             ii++;
-                                            console.log(id);
+                                            
                                         htmltd += '<td><div id="'+ii+'" class="flip"><div class="card"><div class="face front"><img src="back.png" height="100%" /></div><div class="face back"><img  src="'+ json[id] +'" height="100%" class="img" /></div></div></div></td>';
                                     }
                                 $("#myTable").append('<tr id="fila_'+i+'">' + htmltd + '</tr>');
-                            } 
-
+                            }
+                            
             };
 
 
-            var previos = [];
-            var pares = [];
+            
 
             
 
             this.random = function (){
-                
                 do {     
                     aleatorio = Math.floor((Math.random() * 30));
-                    //console.log (aleatorio);
                     if (previos.indexOf (aleatorio) < 0){
-
                         previos.push (aleatorio);
-                        console.log ("aleatorio:"+aleatorio);
-                        //previos.push (aleatorio);                            
                         return aleatorio;
                     }
                     
@@ -146,9 +152,19 @@
                 
             }
 
+            this.random1 = function(nueve){
+                do{
+                    posicion = nueve[Math.floor(Math.random()*nueve.length)];
+                    if(aleatorios.indexOf (posicion)<0 ){
+                        aleatorios.push (posicion);
+                        return posicion;
+                    }
+                }while(true);
+            }
+
             this.getUrl = function (){
                 var url = document.getElementsByClassName("img");
-                console.log(url);
+                //console.log(url);
             }
 
             this.timer = function(){
@@ -186,7 +202,7 @@
             this.drawScore = function(){
 
                 timer();
-                console.log("Tiempo: "+ hours + ":" + min + ":" + time);
+                //console.log("Tiempo: "+ hours + ":" + min + ":" + time);
                 $('#setTime').text("Tiempo: "+ hours + ":" + min + ":" + time);
                 $('#pares').text("Pares: " + paresCo);
             }    
